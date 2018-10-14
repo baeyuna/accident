@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style>
+	.flo{height:50px;position: absolute; color: yellow; font-weight: bold; animation: drop 1s forwards; opacity: 0; transition: all 1s;}
+	.flo:hover{font-size: 2em;}
+
+	.rota{height:50px;position: absolute; color: yellow; animation: drops 1s forwards; opacity: 0; transition: all 1s; }
+
+	.fafa {height:50px;position: absolute; color: yellow; animation: dropss 0.5s forwards; opacity: 0; transition: all 1s; }
+
+	@keyframes drop{
+		from{margin-top: 0; opacity: 0;}to{margin-top: 50px; opacity:100;}}
+
+	@keyframes drops{
+		from{margin-top: 0; opacity: 0;}to{margin-top:200px; opacity:100;}}
+
+	@keyframes dropss{
+		from{margin-left: 0; opacity: 0;}to{margin-left:700px; opacity:100;}}
+
+	#back1{width:1500px; height:750px; position: absolute;}
+
+	#a5 {color: red;}
+
+	#b2 {color: red;}
+	#b3 {width: 100px; font-size: 1.5em; margin-left: 200px; animation-name:b; animation-duration: 1s; animation-direction: normal; animation-iteration-count: infinite;}
+	@keyframes b{
+		0% {opacity: 50;}
+		100% {opacity: 100; transform: rotate3d(0,0,360,360deg);}
+	}
+
+
+	#nameCon{width:200px; height: 200px; background: yellow; color:blue; font-size:3em; font-weight: 3em; position: absolute; top: 200px; right:200px; }
+
+	#circle {width:200px; position: absolute; left: 400px; animation-name: c;  animation-duration: 3s; animation-direction: normal; animation-iteration-count: infinite;}
+		@keyframes c{
+			from {margin-top:10px;}
+			to {margin-top:500px;
+			transform: rotate3D(0,0,360,-360deg);}
+		} 
+
+	#slow {width:200px; position: absolute; transition: all 0.5s;}
+	#slide {width:200px; position: absolute; right:140px; animation-name: d;  animation-duration: 2s; animation-direction: alternate; animation-iteration-count: infinite;}
+	@keyframes d{
+			from{margin-top:500px;}
+			to {margin-top:0px;}
+			 0%   {margin-right:140px;}
+    		15%  {margin-right:20px;}
+    		50%  {margin-right:200px;}
+    		100% {margin-right:0px;}
+		}
+
+	#text2 {width: 300px; height: 100px; color:red; position: absolute; top:300px; right:150px; animation-name: e; animation-duration: 1s; transition: all 1s; font-size: 1.5em; font-weight: bold;}
+	#pic {width:500px; position: absolute; top: 350px; right: 100px;}
+	@keyframes e{
+			from{margin-top:500px;}
+			to {margin-top:0px;}
+			 0%   {margin-right:140px;}
+    		15%  {margin-right:20px;}
+    		50%  {margin-right:200px;}
+    		100% {margin-right:0px;}
+		}
+	#text3 {width: 300px; height:300px; position: absolute; color:red; top: 250px; left: 650px; font-size: 8em; font-weight: bold; animation-name: change; animation-iteration-count: infinite; transition: all 1s; animation-duration: 0.7s;}
+	@keyframes change {
+    from {color: black;}
+    to {color: red;}}
+
+    #truck {width: 700px; position: absolute; transition: all 0.2s; top: 180px; left: -700px;} 
+
+
+</style>
+
+</head>
+<body>
+	<audio id="music">
+		<source src="music.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="car">
+		<source src="car.mp3" type="audio/mpeg">
+		</audio>
+
+	<img src="./img/back.jpg" id="back1">
+	<img src="./img/truck.png" id="truck">
+	<img src="./img/circle.png" id="circle">
+	<img src="./img/slow.png" id="slow">
+	<img src="./img/slide.png" id="slide">
+	<img src="./img/pic.png" id="pic">
+	<div id="text2">경로를 이탈하셨습니다</div>
+	<div id="text3">위험</div>
+	<div id="flower"></div>
+	<div id="floCon"></div>
+	<div id="rotation"></div>
+	<div id="roCon"></div>
+	<div id="fast"></div>
+	<div id="faCon"></div>
+	
+
+
+	<script type="text/javascript">
+		var text = "경 로 를 이 탈 하 셨 습 니 다.";
+		var k = text.split(" ");
+
+		var text = "경로를 이탈 하셨습니다 경로를 이탈 하셨습니다.";
+		var f = text.split(" ");
+		
+		for(var i=0; i<k.length; i++){
+			var c = document .getElementById("flower");
+			var d = c.cloneNode(true);
+			d.className = "flo"
+			d.id = "a"+i;
+			d.innerHTML = k[i];
+			d.style.bottom = 20*i +"px";
+			d.style.animationDelay = i*0.5 +"s";
+			d.onclick= function() {
+				console.log(this.id);
+				var t = document.getElementById(this.id);
+				nameCon.innerHTML = t.innerHTML;
+			}
+			floCon.appendChild(d);
+			}
+
+			for(var i=0; i<k.length; i++){
+			var z = document .getElementById("rotation");
+			var y = z.cloneNode(true);
+			y.className = "rota"
+			y.id = "b"+i;
+			y.innerHTML = k[i];
+			y.style.top = 50*i +"px";
+			y.style.left = 500 +"px";
+			y.style.animationDelay = i*0.5 +"s";
+			roCon.appendChild(y);
+			}
+
+			for(var i=0; i<f.length; i++){
+			var q = document .getElementById("fast");
+			var w = q.cloneNode(true);
+			w.className = "fafa"
+			w.id = "c"+i;
+			w.innerHTML = f[i];
+			w.style.left = 100*i +"px";
+			w.style.animationDelay = i*0.5 +"s";
+			faCon.appendChild(w);
+			}
+			
+
+			slow.onclick = function () {
+			car.currentTime = 10;
+			car.play();
+			slow.style.marginLeft = "1300px";
+			slow.style.animationDirection = "alternate";
+			truck.style.marginLeft ="670px";
+			}
+
+
+			document.getElementById("pic").style.visibility = "hidden";
+			
+			var toggle1 = "off";
+		text2.onclick =function() {
+		if(toggle1 == "off"){
+		toggle1	 = "on";
+		document.getElementById("pic").style.visibility = "visible";
+		}else{
+			toggle1 = "off"
+			document.getElementById("pic").style.visibility = "hidden";
+		}
+		}
+
+		text3.onclick = function () {
+			music.play();
+			}
+	</script>
+</body>
+</html>
